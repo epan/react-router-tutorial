@@ -14,7 +14,7 @@ class App extends Component {
           <Route path='/namedComponent' component={NamedComponents}>
             <IndexRoute components={{ title: Title, subTitle: SubTitle }} />
           </Route>
-          <Route path='/about/:name' component={About} />
+          <Route path='/about(/:name)' component={About} />
           <Route path='*' component={NotFound} />
         </Route>
       </Router>
@@ -72,7 +72,7 @@ const SubTitle = () => (
 const About = (props) => (
   <div>
     <h3>Welcome to the About Page</h3>
-    <h2>{props.params.name}</h2>
+    {props.params.name && <h2>Hello, {props.params.name}</h2>}
   </div>
 )
 
