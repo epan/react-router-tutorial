@@ -14,6 +14,7 @@ class App extends Component {
           <Route path='/namedComponent' component={NamedComponents}>
             <IndexRoute components={{ title: Title, subTitle: SubTitle }} />
           </Route>
+          <Route path='/about/:name' component={About} />
           <Route path='*' component={NotFound} />
         </Route>
       </Router>
@@ -21,21 +22,15 @@ class App extends Component {
   }
 }
 
-const Home = () => <h1>Hello from Home!</h1>
-const Address = (props) => (
+// CONTENT CONTAINER COMPONENT
+const Container = (props) => (
   <div>
-    <br />
-    <IndexLink activeClassName='active' to='/address'>Twitter Feed</IndexLink>&nbsp;
-    <IndexLink activeClassName='active' to='/address/instagram'>Instagram Feed</IndexLink>
-    <h1>We are at 555 Jackson St.</h1>
+    <Nav />
     {props.children}
   </div>
 )
 
-const NotFound = () => <h1>404 Not Found</h1>
-const Instagram = () => <h3>Instagram Feed</h3>
-const TwitterFeed = () => <h3>Twitter Feed</h3>
-
+// NAVIGATION LINKS
 const Nav = () => (
   <div>
     <IndexLink activeClassName='active' to='/'>Home</IndexLink>&nbsp;
@@ -45,12 +40,21 @@ const Nav = () => (
   </div>
 )
 
-const Container = (props) => (
+// COMPONENTS
+const Home = () => <h1>Hello from Home!</h1>
+
+const Address = (props) => (
   <div>
-    <Nav />
+    <br />
+    <IndexLink activeClassName='active' to='/address'>Twitter Feed</IndexLink>&nbsp;
+    <IndexLink activeClassName='active' to='/address/instagram'>Instagram Feed</IndexLink>
+    <h1>We are at 555 Jackson St.</h1>
     {props.children}
   </div>
 )
+const NotFound = () => <h1>404 Not Found</h1>
+const Instagram = () => <h3>Instagram Feed</h3>
+const TwitterFeed = () => <h3>Twitter Feed</h3>
 
 const NamedComponents = (props) => (
   <div>
@@ -58,13 +62,13 @@ const NamedComponents = (props) => (
     {props.subTitle}
   </div>
 )
-
 const Title = () => (
   <h1>Hello from the Title Component</h1>
 )
-
 const SubTitle = () => (
   <h1>Hello from the SubTitle Component</h1>
 )
+
+
 
 export default App
