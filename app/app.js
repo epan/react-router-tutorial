@@ -69,6 +69,11 @@ const SubTitle = () => (
   <h1>Hello from the SubTitle Component</h1>
 )
 
-
+const About = (props) => (
+  <div>
+    <h3>Welcome to the About Page</h3>
+    <h2>{props.params.name}</h2>
+  </div>
+)
 
 export default App
