@@ -10,6 +10,7 @@ class App extends Component {
           <Route path='address' component={Address}>
             <IndexRoute component={TwitterFeed} />
             <Route path='instagram' component={Instagram} />
+            <Route path='query' component={Query} />
           </Route>
           <Route path='/namedComponent' component={NamedComponents}>
             <IndexRoute components={{ title: Title, subTitle: SubTitle }} />
@@ -36,7 +37,16 @@ const Nav = () => (
     <IndexLink activeClassName='active' to='/'>Home</IndexLink>&nbsp;
     <IndexLink activeClassName='active' to='/address'>Address</IndexLink>&nbsp;
     <IndexLink activeClassName='active' to='/about'>About</IndexLink>&nbsp;
-    <IndexLink activeClassName='active' to='/namedComponent'>Named Components</IndexLink>
+    <IndexLink activeClassName='active' to='/namedComponent'>Named Components</IndexLink>&nbsp;
+    <IndexLink
+      activeClassName='active'
+      to={{
+        pathname: '/address/query',
+        query: { message: 'Hello from Route Query' }
+      }}
+    >
+      Route Query
+    </IndexLink>
   </div>
 )
 
@@ -74,6 +84,10 @@ const About = (props) => (
     <h3>Welcome to the About Page</h3>
     {props.params.name && <h2>Hello, {props.params.name}</h2>}
   </div>
+)
+
+const Query = (props) => (
+  <h2>{props.location.query.message}</h2>
 )
 
 export default App
