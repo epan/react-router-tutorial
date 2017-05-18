@@ -11,6 +11,9 @@ class App extends Component {
             <IndexRoute component={TwitterFeed} />
             <Route path='instagram' component={Instagram} />
           </Route>
+          <Route path='/namedComponent' component={NamedComponents}>
+            <IndexRoute components={{ title: Title, subTitle: SubTitle }} />
+          </Route>
           <Route path='*' component={NotFound} />
         </Route>
       </Router>
@@ -37,7 +40,8 @@ const Nav = () => (
   <div>
     <IndexLink activeClassName='active' to='/'>Home</IndexLink>&nbsp;
     <IndexLink activeClassName='active' to='/address'>Address</IndexLink>&nbsp;
-    <IndexLink activeClassName='active' to='/about'>About</IndexLink>
+    <IndexLink activeClassName='active' to='/about'>About</IndexLink>&nbsp;
+    <IndexLink activeClassName='active' to='/namedComponent'>Named Components</IndexLink>
   </div>
 )
 
@@ -46,6 +50,21 @@ const Container = (props) => (
     <Nav />
     {props.children}
   </div>
+)
+
+const NamedComponents = (props) => (
+  <div>
+    {props.title}<br />
+    {props.subTitle}
+  </div>
+)
+
+const Title = () => (
+  <h1>Hello from the Title Component</h1>
+)
+
+const SubTitle = () => (
+  <h1>Hello from the SubTitle Component</h1>
 )
 
 export default App
